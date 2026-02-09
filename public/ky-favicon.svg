@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="KY">
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="#8B7355" />
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="none" stroke="#FAF7F2" stroke-opacity="0.35" stroke-width="2" />
+  <text
+    x="50%"
+    y="53%"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    font-family="Inter, Arial, sans-serif"
+    font-size="28"
+    font-weight="700"
+    letter-spacing="1.2"
+    fill="#FAF7F2"
+  >
+    KY
+  </text>
+</svg>
