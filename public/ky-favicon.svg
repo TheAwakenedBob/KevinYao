@@ -1,16 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="KY">
-  <rect x="2" y="2" width="60" height="60" rx="14" fill="#8B7355" />
-  <rect x="2" y="2" width="60" height="60" rx="14" fill="none" stroke="#FAF7F2" stroke-opacity="0.35" stroke-width="2" />
+  <defs>
+    <linearGradient id="ky-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3A332E" />
+      <stop offset="100%" stop-color="#1E1A17" />
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="url(#ky-bg)" />
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="none" stroke="#E8D8C0" stroke-opacity="0.55" stroke-width="1.5" />
+  <rect x="8" y="8" width="48" height="48" rx="10" fill="none" stroke="#C8A67E" stroke-opacity="0.35" stroke-width="1" />
   <text
     x="50%"
     y="53%"
     text-anchor="middle"
     dominant-baseline="middle"
-    font-family="Inter, Arial, sans-serif"
-    font-size="28"
-    font-weight="700"
-    letter-spacing="1.2"
-    fill="#FAF7F2"
+    font-family="'Cormorant Garamond', 'Times New Roman', serif"
+    font-size="31"
+    font-weight="600"
+    letter-spacing="0.8"
+    fill="#F2E6D4"
   >
     KY
   </text>
