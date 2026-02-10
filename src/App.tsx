@@ -743,7 +743,7 @@ function App() {
       >
         <div className="absolute inset-0">
           <img
-            src="/images/hero-bg.jpg"
+            src={`${import.meta.env.BASE_URL}images/hero-bg.jpg`}
             alt=""
             className="w-full h-full object-cover opacity-20"
           />
