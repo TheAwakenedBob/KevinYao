@@ -494,6 +494,7 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showScrollIndicator, setShowScrollIndicator] = useState(true);
+  const [heroBackgroundOpacity, setHeroBackgroundOpacity] = useState(1);
   const [openExperienceId, setOpenExperienceId] = useState<string | null>(null);
 
   useEffect(() => {
@@ -501,9 +502,9 @@ function App() {
       const heroTl = gsap.timeline({ delay: 0.2 });
 
       heroTl.fromTo(
-        '.hero-headline-word',
+        '.hero-headline-primary',
         { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6, stagger: 0.08, ease: 'power2.out' },
+        { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' },
       );
 
       heroTl.fromTo(
@@ -642,14 +643,19 @@ function App() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrolled = window.scrollY > 50;
+      const scrollY = window.scrollY;
+      const scrolled = scrollY > 50;
       setIsScrolled(scrolled);
       if (scrolled) {
         setShowScrollIndicator(false);
       }
+      const fadeDistance = window.innerHeight * 0.9;
+      const nextOpacity = Math.max(0, 1 - scrollY / fadeDistance);
+      setHeroBackgroundOpacity(nextOpacity);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -660,10 +666,6 @@ function App() {
       setIsMenuOpen(false);
     }
   };
-
-  const headlineWords = 'Building reliable AI and data tools that solve real problems.'.split(
-    ' ',
-  );
 
   return (
     <div className="min-h-screen bg-[var(--bg-primary)]">
@@ -741,25 +743,28 @@ function App() {
         id="hero"
         className="relative min-h-screen flex items-center justify-center overflow-hidden"
       >
-        <div className="absolute inset-0">
+        <div
+          className="absolute inset-0 transition-opacity duration-200"
+          style={{ opacity: heroBackgroundOpacity }}
+        >
           <img
-            src={`${import.meta.env.BASE_URL}images/hero-bg.jpg`}
+            src={`${import.meta.env.BASE_URL}background.jpeg`}
             alt=""
-            className="w-full h-full object-cover opacity-20"
+            className="w-full h-full object-cover opacity-82"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[var(--bg-primary)]/92 via-[var(--bg-primary)]/88 to-[var(--bg-primary)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[var(--bg-primary)]/42 via-[var(--bg-primary)]/58 to-[var(--bg-primary)]/74" />
         </div>
 
         <div className="relative z-10 container-main text-center pt-20">
-          <h1 className="text-[clamp(36px,5vw,64px)] font-semibold leading-[1.1] mb-6 max-w-4xl mx-auto">
-            {headlineWords.map((word, index) => (
-              <span key={index} className="hero-headline-word inline-block mr-[0.25em]">
-                {word}
-              </span>
-            ))}
+          <h1 className="hero-headline-primary text-[clamp(48px,8vw,108px)] font-semibold leading-[0.98] mb-4 max-w-4xl mx-auto">
+            Hi, I&apos;m Kevin
           </h1>
 
-          <p className="hero-subheadline text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-10 text-[var(--text-secondary)]">
+          <p className="hero-subheadline text-[clamp(18px,2.2vw,30px)] leading-[1.25] max-w-4xl mx-auto mb-4 text-[var(--text-secondary)]">
+            Building reliable AI and data tools that solve real problems.
+          </p>
+
+          <p className="text-sm md:text-lg leading-relaxed max-w-3xl mx-auto mb-10 text-[var(--text-secondary)]">
             Computer Science student at the University of Ottawa with hands-on
             experience in OCR automation, data science pipelines, and machine
             learning systems that improve real workflows.
